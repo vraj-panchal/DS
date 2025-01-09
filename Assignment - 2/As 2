@@ -1,0 +1,1015 @@
+Q - 1
+
+
+
+#include <stdio.h>
+#define SIZE 3
+
+int a[SIZE];
+int r = -1; // rear
+int f = -1; // front
+
+void insert();
+void display();
+void delete();
+
+void insert() 
+{
+    if (r == SIZE - 1) 
+    {
+        printf("\nQueue is full\n");
+    } 
+    else 
+    {
+        int value;
+
+        printf("\nEnter the value: ");
+        scanf("%d", &value);
+        
+        if (f == -1) 
+        {
+            f = 0; // Set front to 0 when first element is added
+        }
+        
+        r++;
+        a[r] = value;
+    }
+}
+
+void display() 
+{
+    if (f == -1 || f > r) 
+    {
+        printf("\nQueue is empty\n");
+    } 
+    else 
+    {
+        printf("\nQueue elements: ");
+        for (int i = f; i <= r; i++) 
+        {
+            printf("%d ", a[i]);
+        }
+        printf("\n");
+    }
+}
+
+void delete() 
+{
+    if (f == -1 || f > r) 
+    {
+        printf("\nQueue is empty (underflow)\n");
+    } 
+    else 
+    {
+        printf("\nDeleted element: %d\n", a[f]);
+        f++;
+        
+        // Reset the queue if all elements are deleted
+        if (f > r) 
+        {
+            f = r = -1;
+            printf("\nQueue is reset\n");
+        }
+    }
+}
+
+int main() 
+{
+    int choice;
+
+    while (1) 
+    {
+        printf("\n1. Insert");
+        printf("\n2. Display");
+        printf("\n3. Delete");
+        printf("\n4. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) 
+        {
+            case 1:
+                insert();
+                break;
+
+            case 2:
+                display();
+                break;
+            case 3:
+
+                delete();
+                break;
+            case 4:
+
+                printf("\nThank you\n");
+                return 0;
+                
+            default:
+                printf("\nInvalid choice\n");
+        }
+    }
+    return 0;
+}
+
+
+
+
+
+
+Q - 2
+
+
+
+
+#include<stdio.h>
+#define size 3
+
+int CQ[size];
+int f=0;
+int r=0;
+
+void insert();
+void display();
+void delete();
+
+void insert()
+{
+    if((r==size && f==1) || (r==f-1))
+    {
+        printf("\n Stack is Full ");
+    }
+    else
+    {
+        
+            r++;
+        
+        if(r==1)
+        {
+            f=1;
+        }
+        printf("\n Enter Value : ");
+        scanf("%d",&CQ[r]);
+        
+        
+    }
+
+}
+
+void display()
+{
+    if(f==0)
+    {
+        printf("\n underflow ");
+    }
+
+    // if(r>=f)
+    // {
+    // for(int i=f ;i<=r;i++)
+    // {
+    // printf("\n Element : %d ",CQ[i]);
+    // }
+    // }
+    // else if(f>r)
+    // {
+    // for(int i=1;i<=f;i++)
+    // {
+    // printf("\n Element : %d",CQ[f]);
+    // }
+    // }
+    else
+    {
+        printf("\n Elemets : ");
+        for(int i=f;i<=r;i++)
+        {
+            printf(" %d",CQ[i]);
+        }
+    }
+}
+
+void delete()
+{
+    if(f==0)
+    {
+        printf("\n Underflow ");
+    }
+    else
+    {
+        printf("\n Delete Element : %d",CQ[f]);
+        f++;
+        if(f==r)
+    {
+        f=0;
+        r=0;
+    }
+    else if(f==size)
+    {
+        f=1;
+    }
+    else
+    {
+        
+    }
+
+}
+}
+
+int main()
+{
+    int choice;
+
+    menu:
+        printf("\n1. Insert");
+        printf("\n2. Display");
+        printf("\n3. Delete");
+        printf("\n4. Exit");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            insert();
+            goto menu;
+
+        case 2:
+            display();
+
+            goto menu;
+        
+        case 3:
+            delete();
+
+            goto menu;
+
+        case 4:
+            printf("\n Thank you ");
+            break;
+        
+        default:
+            printf("\n Enter Valid Choice : ");
+            break;
+        }
+
+        return 0;
+}
+
+
+
+
+
+
+Q - 3
+
+
+
+
+
+#include <stdio.h>
+#define size 5
+
+int deque[size];
+int f = -1, r = -1;
+
+void insertRear();
+void deleteFront();
+void deleteRear();
+void display();
+
+void insertRear() 
+{
+    if (r==size-1) 
+    {
+        printf("\nDeque is Full\n");
+    } else 
+    {
+        int value;
+        printf("\nEnter Value: ");
+        scanf("%d", &value);
+
+        if (f == -1) 
+        {
+            f = 0;
+        }
+        r++;
+        deque[r] = value;
+    }
+}
+
+void deleteFront() 
+{
+    if (f == -1) 
+    {
+        printf("\nDeque is Empty\n");
+    } else 
+    {
+        printf("\nDeleted Element from Front: %d\n", deque[f]);
+        f++;
+        if (f == r) 
+        {
+            // Queue is now empty
+            f = -1;
+            r = -1;
+        } 
+    }
+}
+
+void deleteRear() 
+{
+    if (f == -1) 
+    {
+        printf("\nDeque is Empty\n");
+    } 
+    else 
+    {
+        printf("\nDeleted Element from Rear: %d\n", deque[r]);
+        r--;
+        if (f == r) 
+        {
+            // Queue is now empty
+            f = -1;
+            r = -1;
+        } 
+    }
+}
+
+void display() 
+{
+    if (f == -1) 
+    {
+        printf("\nDeque is Empty\n");
+    } else 
+    {
+        printf("\nElements in Deque: ");
+        
+        for(int i=f ;i<r;i++)
+        {
+            printf(" %d ",deque[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice;
+
+    menu:
+    printf("\n1. Insert at Rear");
+    printf("\n2. Delete from Front");
+    printf("\n3. Delete from Rear");
+    printf("\n4. Display");
+    printf("\n5. Exit");
+
+    printf("\nEnter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice) 
+    {
+        case 1:
+            insertRear();
+            goto menu;
+
+        case 2:
+            deleteFront();
+            goto menu;
+
+        case 3:
+            deleteRear();
+            goto menu;
+
+        case 4:
+            display();
+            goto menu;
+
+        case 5:
+            printf("\nThank you\n");
+            break;
+
+        default:
+            printf("\nEnter Valid Choice\n");
+            goto menu;
+    }
+
+    return 0;
+}
+
+
+
+
+Q - 4
+
+
+
+
+
+#include<stdio.h>
+#define size 3
+
+int r=0;
+int f=0;
+int DQ[size];
+void Insert()
+{
+    printf("\n Insertion :-");
+    if(r==size)
+    {
+        printf("\n Overflow :-");
+    }
+    else
+    {
+    r++;
+    if(r==1)
+    {
+        f=1;
+    }
+        printf("\n Enter The Value : ");
+        scanf("%d",&DQ[r]);
+    }
+}
+
+void Display()
+{
+    if(f==0)
+    {
+    printf("\n Underflow :-");
+    }
+    else
+    {
+        printf("\n Elements : ");
+        for(int i=f;i<=r;i++)
+        {
+        printf(" %d ",DQ[i]);
+        }
+    }
+}
+void Delete()
+{
+    b:
+        printf("\n Your Delete Choice :-");
+        printf("\n 1. Left Deletion :-");
+        printf("\n 2. Right Deletion :-");
+
+        int C;
+        
+            printf("\n Enter Your Delete Choice : ");
+            scanf("%d",&C);
+        
+            switch(C)
+            {
+            case 1:
+                if(f==0)
+                {
+                    printf("\n Underflow :-");
+                }
+                else
+                {
+                    if(f==r)
+                    {
+                        printf("\n Queue RESET :-");
+                        f=0;
+                        r=0;
+                    }
+                    else
+                    {
+                        printf("\n Deleted Element : %d ",DQ[f]);
+                        f++;
+                    }
+                }
+                    break;
+            case 2:
+                if(f==0)
+                {
+                    printf("\n Underflow :-");
+                }
+                else
+                {
+                    if(f==r)
+                    {
+                        f=0;
+                        r=0;
+                    }
+                    else
+                    {
+                        printf("\n Deleted Element : %d ",DQ[r]);
+                        r--;
+                    }
+                }
+                        break;
+            }
+}
+
+int main()
+{
+    back:
+        printf("\n Your Choice List :- \n ");
+        printf("\n 1. Insert :-");
+        printf("\n 2. Display :-");
+        printf("\n 3. Delete :-");
+        printf("\n 4. Exit :-");
+
+        int Choice;
+
+        printf("\n Enter Your Choice : ");
+        scanf("%d",&Choice);
+        
+        switch(Choice)
+        {
+            case 1:
+                Insert();
+                goto back;
+                break;
+            case 2:
+                Display();
+                goto back;
+                break;
+            case 3:
+                Delete();
+                goto back;
+                break;
+            case 4:
+                printf("\n Thank You ");
+                break;
+            default :
+                printf("\n Case is not found pls,Re-Enter The Case Number : ");
+                goto back;
+                break;
+        }
+    return 0;
+}
+
+
+
+
+
+Q - 5
+
+
+
+
+
+#include<stdio.h>
+
+#define size 3
+
+int f=size+1;
+int r=size+1;
+int RQ[size];
+
+void input()
+{
+    if(r==1)
+    {
+        printf("\n overflow ");
+    }
+    else
+    {
+        r--;
+        if(r==size);
+        {
+            f=size;
+        }
+        printf("\n Enter Value : ");
+        scanf("%d",&RQ[r]);
+    }
+}
+
+void diaplay()
+
+{
+    printf("\n Display Details : ");
+
+    if(f==size+1)
+    {
+        printf("\n Underflow ");
+    }
+    else
+    {
+        printf("\n Elements : ");
+        for(int i=r;i<=f;i++)
+        {
+            printf(" %d ",RQ[i]);
+        }
+    }
+}
+
+void delete()
+{
+    if(f==size+1)
+    {
+        printf("\n Underflow :");
+    }
+    else
+    {
+        if(f==r)
+        {
+            printf("\n Reset Queue : ");
+            f=size;
+            r=size;
+        }
+        else
+        {
+            printf("\n Delete Element : %d ",RQ[f]);
+            f--;
+        }
+    }
+}
+
+int main()
+{
+    menu:
+        printf("\n 1. insert :-");
+        printf("\n 2. Display:-");
+        printf("\n 3. Delete :-");
+        printf("\n 4. Exit. :-");
+
+        int choice;
+
+            printf("\n Enter Your choice : ");
+                scanf("%d",&choice);
+
+            switch(choice)
+            {
+                case 1:
+                    input();
+
+                    goto menu;
+
+                case 2:
+                    diaplay();
+
+                    goto menu;
+
+                case 3:
+                    delete();
+
+                    goto menu;
+
+                case 4:
+
+                    printf("\n Thank You ");
+
+                    break;
+
+                default:
+                    printf("\n Please Enter Valid Choice ");
+                    break;
+            }
+
+            return 0;
+}
+
+
+
+
+
+
+Q - 6
+
+
+
+
+#include<stdio.h>
+
+#define size 3
+int r=0;
+int f=0;
+int PQ[size];
+int *p;
+
+void Insert();
+void Display();
+void Delete();
+
+void Insert()
+{
+    p=PQ;
+        printf("\n Insertion :-");
+    if(r==size)
+    {
+        printf("\n Overflow :-");
+    }
+    else
+    {
+        r++;
+        if(r==1)
+        {
+        f=1;
+        }
+        printf("\n Enter The Value : ");
+        scanf("%d",(p+r));
+    }
+}
+void Display()
+{
+    p=PQ;
+    if(f==0)
+    {
+        printf("\n Underflow :-");
+    }
+    else
+    {
+        for(int i=f;i<=r;i++)
+    {
+        printf("\n Element : %d ",*(p+i));
+    }
+    }
+}
+void Delete()
+{
+    p=PQ;
+    if(f==0)
+    {
+        printf("\n Underflow :-");
+    }
+    else
+    {
+        if(f==r)
+        {
+            printf("\n Reset Queue :-");
+            f=0;
+            r=0;
+        }
+    else
+    {
+        printf("\n Deleted Element : %d ",*(p+f));
+        f++;
+    }
+    }
+}
+
+
+int main()
+{
+    back:
+        printf("\n Your Choice List :- \n ");
+        printf("\n 1. Insert :-");
+        printf("\n 2. Display :-");
+        printf("\n 3. Delete :-");
+
+        printf("\n 4. Exit :-");
+        int Choice;
+        
+        printf("\n Enter Your Choice : ");
+        scanf("%d",&Choice);
+        
+        switch(Choice)
+        {
+            case 1:
+
+                Insert();
+                goto back;
+                break;
+
+            case 2:
+
+                Display();
+                goto back;
+                break;
+
+            case 3:
+
+                Delete();
+                goto back;
+                break;
+
+            case 4:
+                printf("\n Thank You ");
+                break;
+
+            default :
+
+                printf("\n Case is not found pls,Re-Enter The Case Number : ");
+                goto back;
+
+            break;
+        }
+    return 0;
+}
+
+
+
+
+
+
+
+
+Q - 7
+
+
+
+
+#include<stdio.h>
+
+#define size 3
+
+int f1=0;
+int f2=0;
+
+int r1=0;
+int r2=0;
+
+int SQ1[size];
+int SQ2[size];
+
+
+void insert()
+{
+     b:
+
+        printf("\n Insertion :- ");
+
+        printf("\n 1. Insert 1 :-");
+        printf("\n 2. Insert 2 :-");
+
+        int cho;
+            printf("\n Enetr Your Choice :- ");
+                scanf("%d",&cho);
+
+                switch(cho)
+                {
+                    case 1:
+
+                        if(r1==size)
+                        {
+                            printf("\n Overflow ");
+                        }
+                        else
+                        {
+                            r1++;
+                            if(r1==1)
+                            {
+                                f1=1;
+
+                            }
+
+                            printf("\n Enter Value : ");
+                                scanf("%d",&SQ1[r1]);
+                        }
+
+                            
+                            break;
+                        
+                    case 2:
+
+                        if(r2==size)
+                        {
+                            printf("\n Overflow ");
+                        }
+                        else
+                        {
+                            r2++;
+                            if(r2==1)
+                            {
+                                f2=1;
+                            }
+                            printf("\n Enter value : ");
+                                scanf("%d",&SQ2[r2]);
+                        }
+                        
+                        break;
+
+                        
+                }
+
+}
+
+void display()
+{
+    if(f1==0)
+    {
+        printf("\n Underflow 1");
+    }
+
+    else
+    {
+        printf("\n Element 1 :- ");
+
+        for(int i=f1;i<=r1;i++)
+        {
+            printf(" %d ",SQ1[i]);
+        }
+    }
+    if(f2==0)
+    {
+        printf("\n Underflow 2 ");
+    }
+
+    else
+    {
+        printf("\n Elemet 2 :- ");
+
+        for(int i=f2;i<=r2;i++)
+        {
+            printf(" %d ",SQ2[i]);
+        }
+    }
+}
+
+void delete()
+{
+
+    b:
+        printf("\n Delete 1 :-");
+        printf("\n Delete 2 :-");
+
+        int cho;
+            printf("\n Enter value : ");
+            scanf("%d",&cho);
+
+        switch (cho)
+        {
+        
+            case 1:
+
+            if(f1==0)
+            {
+                printf("\n Underflow : ");
+            }
+           
+                if(f1==r1)
+                {
+                    printf("\n Reset Queue :-");
+                    f1=0;
+                    r1=0;
+                    
+                }
+                else
+                {
+                    printf("\n Delete elemet : %d",SQ1[f1]);
+                    f1++;
+
+                }
+                break;
+            
+
+            case 2:
+
+            if(f1!=0)
+            {
+                printf("\n Sorry Queue 1 Is Full ");    
+            }
+            else
+            {
+                if(f2==0)
+                {
+                    printf("\n underflow");
+                }
+                if(f2==r2)
+                {
+                    printf("\n Reset Queue :-");
+                    f2=0;
+                    r2=0;
+                }
+                else
+                {
+                    printf("\n Deleted Element : %d ",SQ2[f2]);
+                    f2++;
+                }
+            }
+
+            break;
+        }
+
+}
+
+
+int main()
+{
+    int choice;
+
+    menu:
+        printf("\n1. Insert");
+        printf("\n2. Display");
+        printf("\n3. Delete");
+        printf("\n4. Exit");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1:
+            insert();
+            goto menu;
+
+        case 2:
+            display();
+
+            goto menu;
+        
+        case 3:
+            delete();
+
+            goto menu;
+
+        case 4:
+            printf("\n Thank you ");
+            break;
+        
+        default:
+            printf("\n Enter Valid Choice : ");
+            break;
+        }
+
+        return 0;
+}
